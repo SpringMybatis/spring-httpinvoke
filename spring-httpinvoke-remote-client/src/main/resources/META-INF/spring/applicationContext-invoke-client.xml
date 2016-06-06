@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="userService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/remote/userService">
+		</property>
+		<property name="serviceInterface" value="com.huayun.invoke.service.UserService"></property>
+		<!-- 修改默认的HTTP请求链接方式，提升连接效率 -->
+		<property name="httpInvokerRequestExecutor">
+			<bean
+				class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor">
+			</bean>
+		</property>
+	</bean>
+
+</beans>
